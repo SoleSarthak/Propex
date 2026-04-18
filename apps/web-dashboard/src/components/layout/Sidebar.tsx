@@ -5,7 +5,8 @@ import {
   Globe,
   Bell,
   Settings,
-  HelpCircle
+  HelpCircle,
+  ShieldOff
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "../../lib/utils";
@@ -16,6 +17,7 @@ const menuItems = [
   { icon: Package, label: "Packages", path: "/packages" },
   { icon: Globe, label: "Repositories", path: "/repos" },
   { icon: Bell, label: "Notifications", path: "/notifications" },
+  { icon: ShieldOff, label: "Opt-Out", path: "/opt-out" },
 ];
 
 export function Sidebar() {

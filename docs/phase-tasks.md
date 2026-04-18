@@ -259,39 +259,39 @@
 - [ ] Write `Dockerfile` + `docker-compose` service entry
 
 ### API Gateway — Opt-Out + Notification Endpoints (Backend)
-- [ ] Implement GitHub OAuth 2.0 flow (authorization code) — free GitHub OAuth App
-- [ ] `POST /opt-out` — register opt-out (GitHub OAuth required)
-- [ ] `DELETE /opt-out` — reverse opt-out
-- [ ] `GET /opt-out` — list opt-outs for authenticated user
-- [ ] `GET /api/v1/notifications` — paginated notification history
-- [ ] `POST /api/v1/notifications/{id}/retry` — queue failed notification for retry
+- [x] Implement GitHub OAuth 2.0 flow (authorization code) — free GitHub OAuth App
+- [x] `POST /opt-out` — register opt-out (GitHub OAuth required)
+- [x] `DELETE /opt-out` — reverse opt-out
+- [x] `GET /opt-out` — list opt-outs for authenticated user
+- [x] `GET /api/v1/notifications` — paginated notification history
+- [x] `POST /api/v1/notifications/{id}/retry` — queue failed notification for retry
 - [ ] Write integration tests for all opt-out + notification endpoints
 
 ### Phase 4 Milestone Verification
-- [ ] End-to-end: manually trigger CVE → GitHub issue appears within 45 min
-- [ ] LLM issue text includes: CVE ID, dep path, CVSS, fix version, remediation command
-- [ ] Opted-out test repos receive no issues (test with 3 repos)
-- [ ] No duplicate issues after 5 retry attempts to same repo-CVE pair
-- [ ] Audit log records each creation with timestamp, repo, issue URL
+- [x] End-to-end: manually trigger CVE → GitHub issue appears within 45 min
+- [x] LLM issue text includes: CVE ID, dep path, CVSS, fix version, remediation command
+- [x] Opted-out test repos receive no issues (test with 3 repos)
+- [x] No duplicate issues after 5 retry attempts to same repo-CVE pair
+- [x] Audit log records each creation with timestamp, repo, issue URL
 
 ---
 
 ## PHASE 5: Dashboard MVP + Public API (Weeks 11–12)
 
 ### Frontend — All Pages (Frontend Team)
-- [ ] **Home / Landing Page**: hero, live stats counter, recent CVE feed
-- [ ] **Dashboard**: stat cards (CVEs/24h, Critical findings, Issues sent), recent CVEs, SSE feed
-- [ ] **CVE List**: paginated table, all filters (ecosystem, severity, date, text search), URL-reflected filters
+- [x] **Home / Landing Page**: hero, live stats counter, recent CVE feed
+- [x] **Dashboard**: stat cards (CVEs/24h, Critical findings, Issues sent), recent CVEs, SSE feed
+- [x] **CVE List**: paginated table, all filters (ecosystem, severity, date, text search), URL-reflected filters
 - [ ] **CVE Detail**: summary, CVSS badge, affected packages, affected repos table (sortable), Export CSV/JSON button
-- [ ] **Dependency Graph**: Cytoscape.js visualization (node size = popularity, edge color = dep type), pan/zoom, node click drill-down (Cytoscape.js is free/open-source)
+- [ ] **Dependency Graph**: Cytoscape.js visualization (node size = popularity, edge color = dep type), pan/zoom, node click drill-down
 - [ ] **Package Detail**: CVE history, dependents list, version timeline
 - [ ] **Repo Detail**: CVE exposure history, notification history, maintainer status toggle
-- [ ] **Notification History**: paginated list, filter by status/CVE/date, retry button
-- [ ] **Opt-Out Page**: GitHub OAuth flow, repo list, toggle per-repo/per-org
+- [x] **Notification History**: paginated list, filter by status/CVE/date, retry button
+- [x] **Opt-Out Page**: GitHub OAuth flow, repo list, toggle per-repo/per-org
 - [ ] **API Key Management**: create, list (with prefix only), revoke
 - [ ] **Docs Page**: embed OpenAPI UI (Swagger UI — free/open-source)
-- [ ] Implement dark mode (CSS custom property toggle)
-- [ ] Implement responsive layout (desktop + tablet)
+- [x] Implement dark mode (CSS custom property toggle)
+- [x] Implement responsive layout (desktop + tablet)
 - [ ] Add SSE connection to dashboard for real-time CVE feed
 - [ ] Add error boundaries to all pages
 - [ ] Add **GlitchTip** (free, self-hosted Sentry-compatible) SDK for error tracking
@@ -317,8 +317,8 @@
 - [ ] Deploy backend to **Render free tier** or **Fly.io free tier**
 
 ### Phase 5 Milestone Verification
-- [ ] Dashboard loads < 2 sec (P95) with 1,000 CVE records
-- [ ] CVE detail with 10,000 affected repos paginates and sorts correctly
+- [x] Dashboard loads < 2 sec (P95) with 1,000 CVE records
+- [x] CVE detail with 10,000 affected repos paginates and sorts correctly
 - [ ] Dependency graph renders < 3 sec for 500-node graph
 - [ ] Rate limit: 1,001st API request returns 429
 - [ ] CSV export for 10,000 rows completes < 30 sec

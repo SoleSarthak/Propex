@@ -25,6 +25,17 @@ class AffectedRepository(Base):
     # New field for API Gateway PATCH
     maintainer_status = Column(String, default="unacknowledged")
 
+class IssuedNotification(Base):
+    """Mirror of the issued_notifications table managed by the Issue Creator service."""
+    __tablename__ = "issued_notifications"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cve_id = Column(String, nullable=False, index=True)
+    repository_url = Column(String, nullable=False, index=True)
+    github_issue_url = Column(String, nullable=True)
+    success = Column(String, default="false")
+    failure_reason = Column(String, nullable=True)
+
 class Database:
     def __init__(self, database_url: str):
         self.engine = create_async_engine(database_url, echo=False)
@@ -52,6 +63,26 @@ class Database:
             result = await session.execute(stmt)
             await session.commit()
             return result.rowcount > 0
+
+    async def get_notifications(self, skip: int = 0, limit: int = 50):
+        """Fetch paginated notification history from issued_notifications table."""
+        async with self.SessionLocal() as session:
+            try:
+                stmt = select(IssuedNotification).order_by(IssuedNotification.id.desc()).offset(skip).limit(limit)
+                result = await session.execute(stmt)
+                return result.scalars().all()
+            except Exception:
+                return []
+
+    async def get_notification_by_id(self, notification_id: int):
+        """Fetch a specific notification by ID."""
+        async with self.SessionLocal() as session:
+            try:
+                stmt = select(IssuedNotification).where(IssuedNotification.id == notification_id)
+                result = await session.execute(stmt)
+                return result.scalar_one_or_none()
+            except Exception:
+                return None
 
     async def close(self):
         await self.engine.dispose()

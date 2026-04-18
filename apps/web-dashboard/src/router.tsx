@@ -1,13 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App";
 import { PageWrapper } from "./components/layout/PageWrapper";
+import DashboardPage from "./pages/DashboardPage";
+import CveListPage from "./pages/CveListPage";
+import NotificationsPage from "./pages/NotificationsPage";
+import OptOutPage from "./pages/OptOutPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <PageWrapper>
-        <App />
+        <DashboardPage />
       </PageWrapper>
     ),
   },
@@ -15,10 +18,7 @@ const router = createBrowserRouter([
     path: "/cves",
     element: (
       <PageWrapper>
-        <div className="space-y-4">
-          <h1 className="text-3xl font-bold">CVE Explorer</h1>
-          <p className="text-muted-foreground">Monitor and analyze vulnerability propagation across ecosystems.</p>
-        </div>
+        <CveListPage />
       </PageWrapper>
     ),
   },
@@ -48,10 +48,15 @@ const router = createBrowserRouter([
     path: "/notifications",
     element: (
       <PageWrapper>
-        <div className="space-y-4">
-          <h1 className="text-3xl font-bold">Alert Notifications</h1>
-          <p className="text-muted-foreground">Recent security alerts and propagation events needing attention.</p>
-        </div>
+        <NotificationsPage />
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "/opt-out",
+    element: (
+      <PageWrapper>
+        <OptOutPage />
       </PageWrapper>
     ),
   },
