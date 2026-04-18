@@ -10,7 +10,7 @@ TOPICS=("cve.raw" "dependency.resolved" "impact.scored" "notifications.out")
 for topic in "${TOPICS[@]}"; do
   echo "Creating topic: $topic"
   kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --partitions 3 --replication-factor 1 --topic "$topic"
-  
+
   echo "Creating DLQ for: $topic"
   kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1 --topic "$topic.dlq"
 done

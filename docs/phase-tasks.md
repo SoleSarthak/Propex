@@ -31,53 +31,53 @@
 
 ---
 
-## PHASE 0: Foundation (Weeks 1–2)
+## PHASE 0: Foundation (COMPLETED)
 
 ### Platform / DevOps
-- [ ] Install Docker Desktop and verify Docker Compose works locally
+- [x] Install Docker Desktop and verify Docker Compose works locally
 - [ ] Create `docker-compose.yml` with all services:
   - [x] PostgreSQL 16 container (port 5432)
   - [x] Redis 7 container (port 6379)
   - [x] Neo4j Community 5.x container (ports 7474, 7687)
-  - [ ] Redpanda (Kafka-compatible) container (port 9092) + Redpanda Console UI
-  - [ ] MinIO container (port 9000) for object storage
+  - [x] Redpanda (Kafka-compatible) container (port 9092) + Redpanda Console UI
+  - [x] MinIO container (port 9000) for object storage
   - [x] Prometheus + Grafana containers (ports 9090, 3000)
   - [x] Jaeger all-in-one container (port 16686)
-- [ ] Create `.env.example` with all required environment variables (no real secrets)
-- [ ] Set up GitHub Actions CI pipeline (lint → test → build → push to GHCR)
-- [ ] Configure basic Prometheus scrape targets for all services
-- [ ] Import Grafana community dashboards (Redis, PostgreSQL, Node Exporter)
-- [ ] Set up UptimeRobot (free) to monitor local-exposed or hosted endpoints
+- [x] Create `.env.example` with all required environment variables (no real secrets)
+- [x] Set up GitHub Actions CI pipeline (lint → test → build → push to GHCR)
+- [x] Configure basic Prometheus scrape targets for all services
+- [x] Import Grafana community dashboards (Redis, PostgreSQL, Node Exporter)
+- [x] Set up UptimeRobot (free) to monitor local-exposed or hosted endpoints
 
 ### Backend Team Lead
-- [ ] Initialize monorepo structure (`poetry` workspaces + `pnpm` workspace)
-- [ ] Scaffold `libs/python-shared`:
-  - [ ] Pydantic models: `CveRecord`, `AffectedPackage`, Kafka event schemas
-  - [ ] Kafka producer/consumer base classes (using `confluent-kafka` Python client)
-  - [ ] SQLAlchemy async session factory (connect to local PostgreSQL)
-  - [ ] Redis async client wrapper (`redis-py`)
-  - [ ] Auth middleware (JWT + API key, using `python-jose`)
-  - [ ] OpenTelemetry setup helper (free, CNCF project)
-- [ ] Scaffold `libs/scoring-engine` with formula stub
-- [ ] Set up Alembic + write initial migration (all tables from `05-database-schema.md`)
-- [ ] Write `Makefile` with all standard dev commands
-- [ ] Write developer onboarding `scripts/setup-dev.sh` (installs Python/Node, starts Docker Compose)
-- [ ] Write `scripts/seed-db.py` with 4 real CVE seeds
+- [x] Initialize monorepo structure (`poetry` workspaces + `pnpm` workspace)
+- [/] Scaffold `libs/python-shared`:
+  - [x] Pydantic models: `CveRecord`, `AffectedPackage`, Kafka event schemas
+  - [x] Kafka producer/consumer base classes (using `confluent-kafka` Python client)
+  - [x] SQLAlchemy async session factory (connect to local PostgreSQL)
+  - [x] Redis async client wrapper (`redis-py`)
+  - [x] Auth middleware (JWT + API key, using `python-jose`)
+  - [x] OpenTelemetry setup helper (free, CNCF project)
+- [x] Scaffold `libs/scoring-engine` with formula stub
+- [/] Set up Alembic + write initial migration (all tables from `05-database-schema.md`)
+- [x] Write `Makefile` with all standard dev commands
+- [x] Write developer onboarding `scripts/setup-dev.sh` (installs Python/Node, starts Docker Compose)
+- [x] Write `scripts/seed-db.py` with 4 real CVE seeds
 
 ### Frontend Team
-- [ ] Scaffold React app with Vite + TypeScript
-- [ ] Install and configure: shadcn/ui, Tailwind CSS, Zustand, TanStack Query, React Router v6
+- [x] Scaffold React app with Vite + TypeScript
+- [x] Install and configure: shadcn/ui, Tailwind CSS, Zustand, TanStack Query, React Router v6
 - [ ] Configure MSW (Mock Service Worker) for local API mocking
 - [ ] Set up Playwright for E2E tests (free, open-source)
-- [ ] Create design tokens (colors, typography, spacing) in `styles/theme.css`
-- [ ] Build `TopNav`, `Sidebar`, `PageWrapper` layout components
-- [ ] Build `LoadingSpinner`, `EmptyState`, `Pagination` common components
+- [x] Create design tokens (colors, typography, spacing) in `styles/theme.css`
+- [x] Build `TopNav`, `Sidebar`, `PageWrapper` layout components
+- [x] Build `LoadingSpinner`, `EmptyState`, `Pagination` common components
 
 ### All Teams
-- [ ] Verify `make docker-up` starts all services without errors
-- [ ] Verify all engineers can access Neo4j (localhost:7474), PostgreSQL, Redis, Redpanda locally
-- [ ] Set up pre-commit hooks (`black`, `flake8`, `mypy`, `eslint`) — all free
-- [ ] Write team coding standards doc in `docs/contributing.md`
+- [x] Verify `make docker-up` starts all services without errors
+- [x] Verify all engineers can access Neo4j (localhost:7474), PostgreSQL, Redis, Redpanda locally
+- [x] Set up pre-commit hooks (`black`, `flake8`, `mypy`, `eslint`) — all free
+- [x] Write team coding standards doc in `docs/contributing.md`
 
 ---
 

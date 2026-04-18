@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "odepm-scoring"
+version = "0.1.0"
+description = "Pure Python scoring library for ODEPM"
+authors = ["Sarthak <sarth@example.com>"]
+packages = [{include = "odepm_scoring"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+hypothesis = "^6.98.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,13 @@
+{
+  "include": [
+    "apps",
+    "libs",
+    "scripts",
+    "migrations"
+  ],
+  "extraPaths": [
+    "libs/python-shared"
+  ],
+  "venvPath": ".",
+  "venv": ".venv"
+}

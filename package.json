@@ -1,0 +1,21 @@
+{
+  "name": "odepm-root",
+  "private": true,
+  "type": "module",
+
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "make dev",
+    "test": "make test",
+    "lint": "make lint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

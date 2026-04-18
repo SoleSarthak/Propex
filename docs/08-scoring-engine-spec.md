@@ -263,10 +263,10 @@ def compute_score(input: ScoringInput) -> ScoringResult:
     df = depth_factor(input.dependency_depth)
     cm = context_multiplier(input.context_type)
     pf = popularity_factor(input.weekly_downloads)
-    
+
     raw_score = input.cvss_base * df * cm * pf
     final_score = round(min(10.0, raw_score), 2)
-    
+
     return ScoringResult(
         context_score=final_score,
         severity_tier=_score_to_tier(final_score),

@@ -8,8 +8,8 @@
 ## Epic 1: CVE Discovery & Ingestion
 
 ### US-101: Real-Time CVE Ingestion
-**As** a security analyst,  
-**I want** newly published CVEs to appear in the system within 15 minutes of NVD publication,  
+**As** a security analyst,
+**I want** newly published CVEs to appear in the system within 15 minutes of NVD publication,
 **So that** I can begin impact assessment as soon as possible.
 
 **Acceptance Criteria:**
@@ -22,8 +22,8 @@
 ---
 
 ### US-102: CVE Filtering and Search
-**As** a security analyst,  
-**I want** to filter and search CVEs by ecosystem, severity, date, and package name,  
+**As** a security analyst,
+**I want** to filter and search CVEs by ecosystem, severity, date, and package name,
 **So that** I can focus on CVEs relevant to my technology stack.
 
 **Acceptance Criteria:**
@@ -38,8 +38,8 @@
 ---
 
 ### US-103: CVE Detail View
-**As** a security analyst,  
-**I want** to see full details for a specific CVE including all affected packages and repositories,  
+**As** a security analyst,
+**I want** to see full details for a specific CVE including all affected packages and repositories,
 **So that** I can understand the full blast radius.
 
 **Acceptance Criteria:**
@@ -52,8 +52,8 @@
 ---
 
 ### US-104: Manual CVE Submission
-**As** a security researcher,  
-**I want** to manually submit a CVE that hasn't appeared in NVD/OSV yet,  
+**As** a security researcher,
+**I want** to manually submit a CVE that hasn't appeared in NVD/OSV yet,
 **So that** I can analyze propagation of zero-day or pre-publication vulnerabilities.
 
 **Acceptance Criteria:**
@@ -68,8 +68,8 @@
 ## Epic 2: Dependency Resolution
 
 ### US-201: npm Dependency Tree Resolution
-**As** a security analyst,  
-**I want** the system to resolve the full transitive dependency tree for affected npm packages,  
+**As** a security analyst,
+**I want** the system to resolve the full transitive dependency tree for affected npm packages,
 **So that** I can understand which npm packages and projects are downstream of a vulnerability.
 
 **Acceptance Criteria:**
@@ -83,8 +83,8 @@
 ---
 
 ### US-202: PyPI Dependency Tree Resolution
-**As** a security analyst,  
-**I want** the system to resolve transitive dependencies for affected PyPI packages,  
+**As** a security analyst,
+**I want** the system to resolve transitive dependencies for affected PyPI packages,
 **So that** I can identify downstream Python projects at risk.
 
 **Acceptance Criteria:**
@@ -96,8 +96,8 @@
 ---
 
 ### US-203: Maven Dependency Tree Resolution
-**As** a security analyst,  
-**I want** the system to resolve transitive dependencies for affected Maven artifacts,  
+**As** a security analyst,
+**I want** the system to resolve transitive dependencies for affected Maven artifacts,
 **So that** I can identify downstream Java projects at risk.
 
 **Acceptance Criteria:**
@@ -109,8 +109,8 @@
 ---
 
 ### US-204: Dependency Graph Visualization
-**As** a security analyst,  
-**I want** to explore the dependency propagation graph interactively,  
+**As** a security analyst,
+**I want** to explore the dependency propagation graph interactively,
 **So that** I can visually understand how a vulnerability propagates through the ecosystem.
 
 **Acceptance Criteria:**
@@ -126,8 +126,8 @@
 ## Epic 3: Repository Impact Assessment
 
 ### US-301: Affected Repository Discovery
-**As** a security analyst,  
-**I want** the system to identify public GitHub repositories using a vulnerable package,  
+**As** a security analyst,
+**I want** the system to identify public GitHub repositories using a vulnerable package,
 **So that** I know which projects are at risk.
 
 **Acceptance Criteria:**
@@ -140,8 +140,8 @@
 ---
 
 ### US-302: Repository Severity Score
-**As** a security analyst,  
-**I want** each affected repository to have a contextual severity score,  
+**As** a security analyst,
+**I want** each affected repository to have a contextual severity score,
 **So that** I can prioritize which maintainers to notify first.
 
 **Acceptance Criteria:**
@@ -154,8 +154,8 @@
 ---
 
 ### US-303: Repository Vulnerability History
-**As** a security analyst or maintainer,  
-**I want** to see all CVEs that have affected a specific repository,  
+**As** a security analyst or maintainer,
+**I want** to see all CVEs that have affected a specific repository,
 **So that** I can assess its overall security posture.
 
 **Acceptance Criteria:**
@@ -169,8 +169,8 @@
 ## Epic 4: Patch Request Automation
 
 ### US-401: Automated Issue Generation
-**As** an open-source maintainer,  
-**I want** to receive a GitHub issue when my project is affected by a CVE,  
+**As** an open-source maintainer,
+**I want** to receive a GitHub issue when my project is affected by a CVE,
 **So that** I am informed promptly and have the context to fix it.
 
 **Acceptance Criteria:**
@@ -184,8 +184,8 @@
 ---
 
 ### US-402: Issue Content Quality
-**As** a maintainer,  
-**I want** the issue text to be clear, professional, and non-alarmist,  
+**As** a maintainer,
+**I want** the issue text to be clear, professional, and non-alarmist,
 **So that** I trust the notification and act on it.
 
 **Acceptance Criteria:**
@@ -199,8 +199,8 @@
 ---
 
 ### US-403: Opt-Out Registry
-**As** a maintainer,  
-**I want** to opt out of automated issue creation for my repositories,  
+**As** a maintainer,
+**I want** to opt out of automated issue creation for my repositories,
 **So that** I maintain full control over issue tracking in my projects.
 
 **Acceptance Criteria:**
@@ -213,8 +213,8 @@
 ---
 
 ### US-404: Notification History
-**As** a security analyst,  
-**I want** to see a history of all notifications sent,  
+**As** a security analyst,
+**I want** to see a history of all notifications sent,
 **So that** I can audit what has been dispatched and follow up if needed.
 
 **Acceptance Criteria:**
@@ -228,8 +228,8 @@
 ## Epic 5: Platform & API
 
 ### US-501: REST API Access
-**As** an enterprise security engineer,  
-**I want** programmatic API access to CVE impact data,  
+**As** an enterprise security engineer,
+**I want** programmatic API access to CVE impact data,
 **So that** I can integrate ODEPM data into my internal security tooling.
 
 **Acceptance Criteria:**
@@ -243,8 +243,8 @@
 ---
 
 ### US-502: Data Export
-**As** an enterprise security officer,  
-**I want** to export CVE impact data as CSV or JSON,  
+**As** an enterprise security officer,
+**I want** to export CVE impact data as CSV or JSON,
 **So that** I can use it in spreadsheets, BI tools, or internal reports.
 
 **Acceptance Criteria:**

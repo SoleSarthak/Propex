@@ -1,10 +1,10 @@
 # Product Requirements Document (PRD)
 ## Open-Source Dependency Exploit Propagation Mapper (ODEPM)
 
-**Version:** 1.0  
-**Date:** 2026-04-18  
-**Status:** Draft  
-**Owner:** Product Team  
+**Version:** 1.0
+**Date:** 2026-04-18
+**Status:** Draft
+**Owner:** Product Team
 
 ---
 

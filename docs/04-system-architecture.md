@@ -91,7 +91,7 @@ ODEPM follows an **event-driven microservices** architecture. Components communi
 ## 3. Kafka Topics & Event Schemas
 
 ### 3.1 Topic: `cve.raw`
-**Producer:** cve-ingestion  
+**Producer:** cve-ingestion
 **Consumers:** dependency-coordinator
 
 ```json
@@ -116,7 +116,7 @@ ODEPM follows an **event-driven microservices** architecture. Components communi
 ```
 
 ### 3.2 Topic: `dependency.resolved`
-**Producer:** npm/pypi/maven-resolver  
+**Producer:** npm/pypi/maven-resolver
 **Consumers:** impact-analyzer
 
 ```json
@@ -133,7 +133,7 @@ ODEPM follows an **event-driven microservices** architecture. Components communi
 ```
 
 ### 3.3 Topic: `impact.scored`
-**Producer:** impact-analyzer  
+**Producer:** impact-analyzer
 **Consumers:** patch-drafter, issue-creator
 
 ```json
@@ -152,7 +152,7 @@ ODEPM follows an **event-driven microservices** architecture. Components communi
 ```
 
 ### 3.4 Topic: `notifications.out`
-**Producer:** patch-drafter  
+**Producer:** patch-drafter
 **Consumers:** issue-creator
 
 ```json
@@ -203,13 +203,13 @@ cves (id, cve_id, source, published_at, cvss_score, cvss_vector, description, ra
 cve_affected_packages (id, cve_id→cves, ecosystem, package_name, versions_affected[], fixed_version)
 
 -- Per-repo impact record
-affected_repositories (id, cve_affected_package_id, repo_url, repo_owner, 
+affected_repositories (id, cve_affected_package_id, repo_url, repo_owner,
                        dependency_depth, dependency_path[], context_type,
                        context_score, severity_tier, weekly_downloads,
                        notification_status, issue_url, created_at)
 
 -- Notification history
-issued_notifications (id, cve_id, repo_url, issue_url, status, 
+issued_notifications (id, cve_id, repo_url, issue_url, status,
                       created_at, retry_count, error_message)
 
 -- Opt-out registry

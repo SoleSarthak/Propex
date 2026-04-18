@@ -90,7 +90,7 @@ def test_score_always_valid(cvss, depth, downloads):
 def test_nvd_cve_normalized_correctly():
     raw_nvd = load_fixture("nvd_cve_sample.json")
     result = NvdNormalizer().normalize(raw_nvd)
-    
+
     assert result.cve_id == "CVE-2024-12345"
     assert result.source == "nvd"
     assert 0.0 <= result.cvss_score <= 10.0
@@ -100,7 +100,7 @@ def test_nvd_cve_normalized_correctly():
 def test_deduplication_prefers_newer_source():
     existing = CveRecord(cve_id="CVE-2024-12345", source="nvd", published_at=datetime(2024,1,1))
     incoming = CveRecord(cve_id="CVE-2024-12345", source="osv", published_at=datetime(2024,1,2))
-    
+
     result = dedup_cve(existing, incoming)
     assert result.source == "nvd"          # nvd takes precedence
     assert result.last_modified_at is not None
@@ -155,23 +155,23 @@ Integration tests run against **real infrastructure** via Testcontainers (Python
 
 @pytest.mark.integration
 class TestNvdIngestion:
-    
+
     async def test_polls_nvd_and_persists_new_cve(
         self, db_session, kafka_consumer, mock_nvd_api
     ):
         # Arrange: mock NVD returns 1 new CVE
         mock_nvd_api.return_value = load_fixture("nvd_single_cve.json")
-        
+
         # Act: trigger polling job
         await run_nvd_poll_job()
-        
+
         # Assert: CVE in PostgreSQL
         cve = await db_session.execute(
             select(CVE).where(CVE.cve_id == "CVE-2024-12345")
         )
         assert cve is not None
         assert cve.cvss_score == 9.8
-        
+
         # Assert: event published to Kafka
         message = await kafka_consumer.poll(timeout=5.0)
         assert message is not None
@@ -182,11 +182,11 @@ class TestNvdIngestion:
     ):
         # Pre-seed: CVE already exists
         await db_session.add(CVE(cve_id="CVE-2024-12345", source="nvd"))
-        
+
         # Run poll twice
         await run_nvd_poll_job()
         await run_nvd_poll_job()
-        
+
         # Only 1 Kafka message
         messages = await kafka_consumer.poll_all(timeout=3.0)
         assert len(messages) == 1
@@ -202,7 +202,7 @@ describe("npmRegistryClient integration", () => {
     // Uses WireMock stub of npm registry
     const client = new NpmRegistryClient();
     const dependents = await client.getDirectDependents("lodash", "4.17.20");
-    
+
     expect(dependents.length).toBeGreaterThan(10);
     expect(dependents).toContainEqual(
       expect.objectContaining({ name: "express" })
@@ -217,7 +217,7 @@ describe("npmRegistryClient integration", () => {
       depth: 1,
       type: "runtime"
     });
-    
+
     const result = await testNeo4jDriver.session().run(
       "MATCH (a:Package)-[r:DEPENDS_ON]->(b:Package) RETURN r.depth",
       {}
@@ -238,10 +238,10 @@ async def test_full_scoring_pipeline(
     cve = await seed_cve(db_session, cvss=9.8, ecosystem="npm", package="lodash")
     await seed_neo4j_graph(neo4j_session, repo="github.com/vercel/next.js", depth=2)
     await redis_client.set("pkg:downloads:npm:lodash", "50000000")
-    
+
     # Act: run impact analyzer
     await run_impact_analyzer_for_cve(cve.cve_id)
-    
+
     # Assert: score stored in DB
     record = await db_session.execute(
         select(AffectedRepository)
@@ -250,7 +250,7 @@ async def test_full_scoring_pipeline(
     assert record.context_score > 0
     assert record.severity_tier in ("Critical", "High", "Medium", "Low")
     assert record.depth_factor is not None
-    
+
     # Assert: Kafka event published for High+ repos
     if record.severity_tier in ("Critical", "High"):
         msg = await kafka_consumer.poll(timeout=5.0, topic="impact.scored")
@@ -263,8 +263,8 @@ async def test_full_scoring_pipeline(
 
 ### 4.1 Framework
 
-**Tool:** Playwright 1.44 (TypeScript)  
-**Location:** `apps/web-dashboard/tests/e2e/`  
+**Tool:** Playwright 1.44 (TypeScript)
+**Location:** `apps/web-dashboard/tests/e2e/`
 **Environment:** Staging (seeded with known test data)
 
 ### 4.2 Critical User Flows
@@ -276,27 +276,27 @@ async def test_full_scoring_pipeline(
 
 test("analyst can find and triage a new critical CVE", async ({ page }) => {
   await page.goto("https://staging.odepm.io");
-  
+
   // Login with GitHub (using test account)
   await page.click('[data-testid="login-github-btn"]');
   await githubLogin(page, TEST_GITHUB_CREDENTIALS);
-  
+
   // Navigate to CVEs page
   await page.click('[data-testid="nav-cves"]');
   await expect(page).toHaveURL(/\/cves/);
-  
+
   // Filter to Critical only
   await page.click('[data-testid="filter-severity-critical"]');
   await expect(page.locator('[data-testid="cve-card"]')).toHaveCount(expect.greaterThan(0));
-  
+
   // Click first CVE
   await page.locator('[data-testid="cve-card"]').first().click();
-  
+
   // Verify CVE detail page
   await expect(page.locator('[data-testid="cve-id"]')).toBeVisible();
   await expect(page.locator('[data-testid="cvss-score"]')).toBeVisible();
   await expect(page.locator('[data-testid="affected-repos-table"]')).toBeVisible();
-  
+
   // Export CSV
   await page.click('[data-testid="export-csv-btn"]');
   await expect(page.locator('[data-testid="export-success-toast"]')).toBeVisible();
@@ -308,16 +308,16 @@ test("analyst can find and triage a new critical CVE", async ({ page }) => {
 ```typescript
 test("maintainer can opt out via opt-out page", async ({ page }) => {
   await page.goto("https://staging.odepm.io/opt-out");
-  
+
   await page.click('[data-testid="github-oauth-btn"]');
   await githubLogin(page, TEST_MAINTAINER_CREDENTIALS);
-  
+
   // Select a repo to opt out
   await page.click('[data-testid="repo-toggle-my-test-lib"]');
   await page.click('[data-testid="save-opt-out-btn"]');
-  
+
   await expect(page.locator('[data-testid="opt-out-success"]')).toBeVisible();
-  
+
   // Verify via API
   const response = await fetch(`${API_BASE}/opt-out`, {
     headers: { Authorization: `Bearer ${TEST_API_KEY}` }
@@ -372,15 +372,15 @@ export default function () {
     headers: { Authorization: `Bearer ${API_KEY}` }
   });
   check(r1, { 'status 200': (r) => r.status === 200 });
-  
+
   sleep(1);
-  
+
   // CVE detail
   const r2 = http.get(`${API_BASE}/api/v1/cves/${KNOWN_CVE_ID}`, {
     headers: { Authorization: `Bearer ${API_KEY}` }
   });
   check(r2, { 'status 200': (r) => r.status === 200 });
-  
+
   sleep(1);
 }
 ```
@@ -397,14 +397,14 @@ def test_pipeline_handles_500k_events_per_day():
     This test runs in performance environment only.
     """
     events_per_second = 500_000 / 86_400  # ~5.8 events/sec
-    
+
     producer = KafkaProducer(...)
     for i in range(10_000):  # 10K test events (scaled down, 50x)
         producer.send("cve.raw", value=generate_test_cve_event(i))
-    
+
     # Wait for processing (scaled: 10K events should finish in ~30 min)
     wait_for_processing(expected_count=10_000, timeout_minutes=30)
-    
+
     # Assert all records appear in DB
     count = db.execute("SELECT COUNT(*) FROM affected_repositories").scalar()
     assert count >= 10_000
@@ -512,7 +512,7 @@ async def seed():
         cve = await fetch_from_nvd(cve_id)
         await db.insert_cve(cve)
         await trigger_resolution(cve)
-    
+
     print(f"Seeded {len(SEED_CVES)} CVEs with dependency resolution")
 ```
 

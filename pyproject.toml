@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "odepm-root"
+version = "0.1.0"
+description = "Open-Source Dependency Exploit Propagation Mapper"
+authors = ["Sarthak <sarth@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+flake8 = "^7.0.0"
+mypy = "^1.8.0"
+isort = "^5.13.2"
+pre-commit = "^3.6.2"
+
+[tool.mypy]
+explicit_package_bases = true
+namespace_packages = true
+exclude = ["migrations", "services"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

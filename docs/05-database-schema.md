@@ -149,7 +149,7 @@ CREATE TABLE affected_repositories (
     repo_url                    TEXT NOT NULL,
     repo_owner                  TEXT NOT NULL,
     repo_name                   TEXT NOT NULL,
-    
+
     -- Dependency context
     dependency_depth            INTEGER NOT NULL DEFAULT 1, -- 1 = direct
     dependency_path             TEXT[] NOT NULL,            -- ["my-app", "express", "lodash"]
@@ -157,7 +157,7 @@ CREATE TABLE affected_repositories (
     version_spec                TEXT,                       -- "^4.16.0"
     context_type                VARCHAR(20)                 -- runtime | dev | peer | test | optional
                                 CHECK (context_type IN ('runtime', 'dev', 'peer', 'test', 'optional', 'unknown')),
-    
+
     -- Scoring
     cvss_base                   DECIMAL(3,1),
     depth_factor                DECIMAL(4,3),
@@ -166,18 +166,18 @@ CREATE TABLE affected_repositories (
     context_score               DECIMAL(4,2),               -- 1.0 - 10.0
     severity_tier               VARCHAR(10)                 -- Critical | High | Medium | Low
                                 CHECK (severity_tier IN ('Critical', 'High', 'Medium', 'Low')),
-    
+
     -- Notification
     notification_status         VARCHAR(20) DEFAULT 'pending'
                                 CHECK (notification_status IN ('pending', 'queued', 'sent', 'skipped_opt_out', 'skipped_duplicate', 'failed')),
     issue_url                   TEXT,
     notified_at                 TIMESTAMPTZ,
-    
+
     -- Maintainer feedback
     maintainer_status           VARCHAR(20)                 -- null | patched | not_affected | wont_fix
                                 CHECK (maintainer_status IN (NULL, 'patched', 'not_affected', 'wont_fix')),
     maintainer_updated_at       TIMESTAMPTZ,
-    
+
     created_at                  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at                  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
@@ -202,20 +202,20 @@ CREATE TABLE issued_notifications (
     issue_url       TEXT,
     issue_number    INTEGER,
     github_repo     TEXT,                                   -- owner/repo
-    
+
     issue_title     TEXT,
     issue_body      TEXT,                                   -- Full generated text
     issue_labels    TEXT[],
-    
+
     generation_method VARCHAR(20)                           -- llm | template
                     CHECK (generation_method IN ('llm', 'template')),
     llm_model       VARCHAR(50),                            -- gpt-4o-mini, etc.
-    
+
     status          VARCHAR(20) NOT NULL DEFAULT 'created'
                     CHECK (status IN ('draft', 'created', 'failed', 'skipped')),
     retry_count     INTEGER DEFAULT 0,
     error_message   TEXT,
-    
+
     created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     sent_at         TIMESTAMPTZ,
 

@@ -27,7 +27,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.1 CVE Ingestion Service
 
-**Owner:** Backend Team  
+**Owner:** Backend Team
 **Effort Estimate:** 5 engineering days
 
 #### In Scope
@@ -52,7 +52,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.2 Dependency Coordinator Service
 
-**Owner:** Backend Team  
+**Owner:** Backend Team
 **Effort Estimate:** 2 engineering days
 
 #### In Scope
@@ -70,7 +70,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.3 npm Resolver Service
 
-**Owner:** Backend Team  
+**Owner:** Backend Team
 **Effort Estimate:** 8 engineering days
 
 #### In Scope
@@ -94,7 +94,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.4 PyPI Resolver Service
 
-**Owner:** Backend Team  
+**Owner:** Backend Team
 **Effort Estimate:** 7 engineering days
 
 #### In Scope
@@ -116,7 +116,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.5 Maven Resolver Service
 
-**Owner:** Backend Team  
+**Owner:** Backend Team
 **Effort Estimate:** 10 engineering days (Java complexity)
 
 #### In Scope
@@ -141,7 +141,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.6 Impact Analyzer (Scoring Engine)
 
-**Owner:** Backend Team + ML/AI Team  
+**Owner:** Backend Team + ML/AI Team
 **Effort Estimate:** 6 engineering days
 
 #### In Scope
@@ -166,7 +166,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.7 Patch Drafter Service
 
-**Owner:** ML/AI Team  
+**Owner:** ML/AI Team
 **Effort Estimate:** 5 engineering days
 
 #### In Scope
@@ -189,7 +189,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.8 Issue Creator Service
 
-**Owner:** Backend Team  
+**Owner:** Backend Team
 **Effort Estimate:** 6 engineering days
 
 #### In Scope
@@ -215,7 +215,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.9 API Gateway
 
-**Owner:** Backend Team  
+**Owner:** Backend Team
 **Effort Estimate:** 8 engineering days
 
 #### In Scope
@@ -241,7 +241,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.10 Web Dashboard
 
-**Owner:** Frontend Team  
+**Owner:** Frontend Team
 **Effort Estimate:** 12 engineering days
 
 #### In Scope
@@ -269,7 +269,7 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### 3.11 Infrastructure & Platform
 
-**Owner:** Platform Team  
+**Owner:** Platform Team
 **Effort Estimate:** 8 engineering days
 
 #### In Scope
@@ -304,14 +304,14 @@ This document defines the precise engineering scope for the ODEPM MVP, breaking 
 
 ### `libs/python-shared`
 
-**Owner:** Backend Team Lead  
+**Owner:** Backend Team Lead
 **Effort Estimate:** 3 engineering days
 
 Covers: Pydantic models, Kafka helpers, SQLAlchemy session factory, Redis client, auth middleware, OpenTelemetry setup.
 
 ### `libs/scoring-engine`
 
-**Owner:** ML/AI Team  
+**Owner:** ML/AI Team
 **Effort Estimate:** 2 engineering days
 
 Pure Python library, no I/O. Implements the scoring formula from `08-scoring-engine-spec.md`.

@@ -1,10 +1,35 @@
-# Windows
-Thumbs.db
-Desktop.ini
+# Node
+node_modules/
+dist/
+build/
+.npm
+.eslintcache
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+.pytest_cache/
+.mypy_cache/
+.flake8
+# Wait, .flake8 should be tracked.
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
 
 # IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# System
+# OS
 .DS_Store
+Thumbs.db
+Desktop.ini

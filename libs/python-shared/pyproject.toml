@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "odepm-common"
+version = "0.1.0"
+description = "Shared utilities for ODEPM"
+authors = ["Sarthak <sarth@example.com>"]
+packages = [{include = "odepm_common"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.6.0"
+aiokafka = "^0.10.0"
+redis = "^5.0.0"
+neo4j = "^5.17.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.27"}
+asyncpg = "^0.29.0"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+opentelemetry-api = "^1.23.0"
+opentelemetry-sdk = "^1.23.0"
+opentelemetry-exporter-otlp = "^1.23.0"
+fastapi = "^0.109.0"
+alembic = "^1.13.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

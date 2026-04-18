@@ -1,8 +1,8 @@
 # 06 — API Contracts
 ## Open-Source Dependency Exploit Propagation Mapper (ODEPM)
 
-**Version:** 1.0 | **Date:** 2026-04-18  
-**Base URL:** `https://api.odepm.io/api/v1`  
+**Version:** 1.0 | **Date:** 2026-04-18
+**Base URL:** `https://api.odepm.io/api/v1`
 **Spec Format:** OpenAPI 3.1
 
 ---
