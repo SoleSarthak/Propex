@@ -84,52 +84,52 @@
 ## PHASE 1: CVE Ingestion + npm Resolver (Weeks 3–4)
 
 ### CVE Ingestion Service (Backend)
-- [ ] Implement NVD API client (`services/cve_ingestion/services/nvd_client.py`)
-  - [ ] `GET /rest/json/cves/2.0` with `lastModStartDate` filter (NVD API is free)
-  - [ ] Pagination handling (NVD returns 2,000 per page)
-  - [ ] Retry with exponential backoff on 503/429
-- [ ] Implement OSV webhook endpoint (`POST /webhooks/osv`) — OSV is free and open
-- [ ] Implement GitHub Advisory GraphQL feed parser (uses free GitHub token)
-- [ ] Implement CVE normalizer (NVD → `CveRecord`)
-- [ ] Implement deduplication logic (upsert by `cve_id`)
-- [ ] Implement Redpanda/Kafka producer (publish to `cve.raw` topic)
-- [ ] Implement MinIO archival of raw API responses (replaces S3)
-- [ ] Set up APScheduler jobs (NVD: 15 min, GHSA: 30 min) — free library
-- [ ] Add health check + readiness endpoints
-- [ ] Write unit tests (normalizer, deduplication, version parser) — target 90% coverage
-- [ ] Write integration tests (NVD poll → PostgreSQL → Redpanda)
-- [ ] Write `Dockerfile` + `docker-compose` service entry
+- [x] Implement NVD API client (`services/cve_ingestion/services/nvd_client.py`)
+  - [x] `GET /rest/json/cves/2.0` with `lastModStartDate` filter (NVD API is free)
+  - [x] Pagination handling (NVD returns 2,000 per page)
+  - [x] Retry with exponential backoff on 503/429
+- [x] Implement OSV webhook endpoint (`POST /webhooks/osv`) — OSV is free and open
+- [x] Implement GitHub Advisory GraphQL feed parser (uses free GitHub token)
+- [x] Implement CVE normalizer (NVD → `CveRecord`)
+- [x] Implement deduplication logic (upsert by `cve_id`)
+- [x] Implement Redpanda/Kafka producer (publish to `cve.raw` topic)
+- [x] Implement MinIO archival of raw API responses (replaces S3)
+- [x] Set up APScheduler jobs (NVD: 15 min, GHSA: 30 min) — free library
+- [x] Add health check + readiness endpoints
+- [x] Write unit tests (normalizer, deduplication, version parser) — target 90% coverage
+- [x] Write integration tests (NVD poll → PostgreSQL → Redpanda)
+- [x] Write `Dockerfile` + `docker-compose` service entry
 
 ### npm Resolver Service (Backend)
-- [ ] Implement Redpanda consumer for `cve.raw` topic (npm filter)
-- [ ] Implement npm Registry API client (free, no auth needed for public packages)
-- [ ] Implement libraries.io reverse dependency lookup (free API tier: 60 req/min)
-- [ ] Implement BFS dependency tree traversal (max depth 10)
-- [ ] Implement semver version range overlap checker (use `semver` Python library)
-- [ ] Implement GitHub code search API client (free GitHub token, 30 req/min)
-- [ ] Implement Neo4j graph writer (Package, Repository nodes + DEPENDS_ON, USES, AFFECTS edges)
-- [ ] Implement Redis cache for package trees (24h TTL)
-- [ ] Implement Redpanda producer (publish to `dependency.resolved`)
-- [ ] Write unit tests (semver checker, BFS traversal) — 90% coverage
-- [ ] Write integration tests (npm registry → Neo4j write → Redpanda publish)
-- [ ] Write `Dockerfile` + `docker-compose` service entry
+- [x] Implement Redpanda consumer for `cve.raw` topic (npm filter)
+- [x] Implement npm Registry API client (free, no auth needed for public packages)
+- [x] Implement libraries.io reverse dependency lookup (free API tier: 60 req/min)
+- [x] Implement BFS dependency tree traversal (max depth 10)
+- [x] Implement semver version range overlap checker (use `semver` Python library)
+- [x] Implement GitHub code search API client (free GitHub token, 30 req/min)
+- [x] Implement Neo4j graph writer (Package, Repository nodes + DEPENDS_ON, USES, AFFECTS edges)
+- [x] Implement Redis cache for package trees (24h TTL)
+- [x] Implement Redpanda producer (publish to `dependency.resolved`)
+- [x] Write unit tests (semver checker, BFS traversal) — 90% coverage
+- [x] Write integration tests (npm registry → Neo4j write → Redpanda publish)
+- [x] Write `Dockerfile` + `docker-compose` service entry
 
 ### Dependency Coordinator (Backend)
-- [ ] Implement Redpanda consumer for `cve.raw`
-- [ ] Route packages to npm/PyPI/Maven resolver topics
-- [ ] Track resolution status per CVE in PostgreSQL
-- [ ] Write unit + integration tests
+- [x] Implement Redpanda consumer for `cve.raw`
+- [x] Route packages to npm/PyPI/Maven resolver topics
+- [x] Track resolution status per CVE in PostgreSQL
+- [x] Write unit + integration tests
 
 ### Scoring Engine Library (ML/AI)
-- [ ] Implement `depth_factor()`, `context_multiplier()`, `popularity_factor()` functions
-- [ ] Implement `compute_score()` with full formula
-- [ ] Implement `_score_to_tier()` classification
-- [ ] Write 20+ unit tests including property-based tests (`hypothesis` — free)
-- [ ] Validate against 20 manual expert-scored CVE-repo pairs (target r ≥ 0.85)
+- [x] Implement `depth_factor()`, `context_multiplier()`, `popularity_factor()` functions
+- [x] Implement `compute_score()` with full formula
+- [x] Implement `_score_to_tier()` classification
+- [x] Write 20+ unit tests including property-based tests (`hypothesis` — free)
+- [x] Validate against 20 manual expert-scored CVE-repo pairs (target r ≥ 0.85)
 
 ### Monitoring
-- [ ] Add Grafana alert rule: CVE ingestion lag > 20 min → email (via UptimeRobot or SMTP)
-- [ ] Add Grafana panel: Redpanda `cve.raw` consumer lag
+- [x] Add Grafana alert rule: CVE ingestion lag > 20 min → email (via UptimeRobot or SMTP)
+- [x] Add Grafana panel: Redpanda `cve.raw` consumer lag
 
 ### Phase 1 Milestone Verification
 - [x] Manually trigger NVD poll; CVE appears in DB within 15 min
@@ -141,49 +141,49 @@
 ## PHASE 2: PyPI + Maven Resolvers + Graph Enrichment (Weeks 5–6)
 
 ### PyPI Resolver Service (Backend)
-- [ ] Implement Redpanda consumer for `cve.raw` (PyPI filter)
-- [ ] Implement PyPI JSON API client (`/pypi/{package}/json`) — free, no auth
-- [ ] Implement libraries.io PyPI reverse dependency lookup (free tier)
-- [ ] Implement PEP 508 version specifier parser (`packaging` library — free)
-- [ ] Implement `setup.py` / `pyproject.toml` / `requirements.txt` parser
-- [ ] Handle `extras_require` and `tests_require` dependency types
-- [ ] Implement Neo4j graph writer (reuse shared pattern)
-- [ ] Implement Redis cache + rate limiting
-- [ ] Implement Redpanda publish to `dependency.resolved`
+- [x] Implement Redpanda consumer for `cve.raw` (PyPI filter)
+- [x] Implement PyPI JSON API client (`/pypi/{package}/json`) — free, no auth
+- [x] Implement libraries.io PyPI reverse dependency lookup (free tier)
+- [x] Implement PEP 508 version specifier parser (`packaging` library — free)
+- [x] Implement `setup.py` / `pyproject.toml` / `requirements.txt` parser
+- [x] Handle `extras_require` and `tests_require` dependency types
+- [x] Implement Neo4j graph writer (reuse shared pattern)
+- [x] Implement Redis cache + rate limiting
+- [x] Implement Redpanda publish to `dependency.resolved`
 - [ ] Write unit tests (PEP 508 parser edge cases) — 90% coverage
 - [ ] Write integration tests
-- [ ] Write `Dockerfile` + `docker-compose` service entry
+- [x] Write `Dockerfile` + `docker-compose` service entry
 
 ### Maven Resolver Service (Backend / Java)
-- [ ] Implement Redpanda consumer (use `kafka-python` or Java Kafka client)
-- [ ] Implement Maven Central Search API client (free, no auth needed)
-- [ ] Implement POM XML parser (dependencies + dependencyManagement + BOM imports)
-- [ ] Implement Maven version range parser (e.g., `[1.0,2.0)`)
-- [ ] Handle all dependency scopes: compile, runtime, test, provided, import
-- [ ] Implement Neo4j graph writer
-- [ ] Implement Redis caching
-- [ ] Implement Redpanda publish to `dependency.resolved`
+- [x] Implement Redpanda consumer (use `kafka-python` or Java Kafka client)
+- [x] Implement Maven Central Search API client (free, no auth needed)
+- [x] Implement POM XML parser (dependencies + dependencyManagement + BOM imports)
+- [x] Implement Maven version range parser (e.g., `[1.0,2.0)`)
+- [x] Handle all dependency scopes: compile, runtime, test, provided, import
+- [x] Implement Neo4j graph writer
+- [x] Implement Redis caching
+- [x] Implement Redpanda publish to `dependency.resolved`
 - [ ] Write unit tests — 90% coverage
 - [ ] Write integration tests (use `testcontainers` — free, open-source)
-- [ ] Write `Dockerfile` + `docker-compose` service entry
+- [x] Write `Dockerfile` + `docker-compose` service entry
 
 ### Repository Discovery Enhancement (Backend)
-- [ ] Support manifest file detection for `requirements.txt`, `setup.py`, `pom.xml`, `build.gradle`
-- [ ] Implement version spec overlap verification for PyPI specs
-- [ ] Implement version spec overlap verification for Maven ranges
-- [ ] Enrich repository metadata from GitHub API (stars, language, archive status, fork) — free token
-- [ ] Update `repositories` table with enriched metadata
-- [ ] Handle GitHub search API pagination (date windowing to bypass 1,000 result limit)
+- [x] Support manifest file detection for `requirements.txt`, `setup.py`, `pom.xml`, `build.gradle`
+- [x] Implement version spec overlap verification for PyPI specs
+- [x] Implement version spec overlap verification for Maven ranges
+- [x] Enrich repository metadata from GitHub API (stars, language, archive status, fork) — free token
+- [x] Update `repositories` table with enriched metadata
+- [x] Handle GitHub search API pagination (date windowing to bypass 1,000 result limit)
 
 ### Monitoring
-- [ ] Create Neo4j indexes: `pkg_lookup`, `repo_url`, `cve_id`
-- [ ] Add Grafana panels: resolution time P95 per ecosystem
+- [x] Create Neo4j indexes: `pkg_lookup`, `repo_url`, `cve_id`
+- [x] Add Grafana panels: resolution time P95 per ecosystem
 
 ### Phase 2 Milestone Verification
-- [ ] `requests@<2.32.0` (PyPI) resolves with > 500 affected repos
-- [ ] Log4j Maven CVE resolves with > 200 affected Java repos
-- [ ] All 3 resolvers complete in < 60 sec for < 1,000 direct dependents (P95)
-- [ ] Neo4j path query returns correct chains for known repo-CVE pairs
+- [x] `requests@<2.32.0` (PyPI) resolves with > 500 affected repos
+- [x] Log4j Maven CVE resolves with > 200 affected Java repos
+- [x] All 3 resolvers complete in < 60 sec for < 1,000 direct dependents (P95)
+- [x] Neo4j path query returns correct chains for known repo-CVE pairs
 
 ---
 

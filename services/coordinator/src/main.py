@@ -4,7 +4,7 @@ import json
 import asyncio
 from typing import Dict, Any
 from fastapi import FastAPI
-from odepm_common.kafka.consumer import KafkaConsumerBase
+from odepm_common.kafka.producer import KafkaConsumerBase
 from odepm_common.db.session import get_db_session_factory
 from odepm_common.models.cve import CveRecord
 from .services.router import CoordinatorRouter

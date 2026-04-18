@@ -146,6 +146,41 @@
       ],
       "title": "CVE Ingestion Lag (Time since last run)",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P18092B0892D3D551"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P18092B0892D3D551"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.95, sum(rate(propex_resolution_duration_seconds_bucket[5m])) by (le, ecosystem))",
+          "instant": false,
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Resolution Time P95 per Ecosystem",
+      "type": "timeseries"
     }
   ],
   "schemaVersion": 38,

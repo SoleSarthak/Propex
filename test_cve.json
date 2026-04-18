@@ -1,1 +1,2 @@
-{"cve_id": "CVE-TEST-LODASH", "affected_packages": [{"name": "lodash", "ecosystem": "npm", "version_range": "<4.17.21"}], "cvss_score": 9.8, "summary": "Test vulnerability for lodash"}
+{"cve_id": "CVE-TEST-REQUESTS", "source": "NVD", "published_at": "2024-01-01T00:00:00Z", "cvss_score": 9.8, "affected_packages": [{"name": "requests", "ecosystem": "pypi", "versions_affected": ["<2.32.0"]}], "description": "Test vulnerability for requests"}
+{"cve_id": "CVE-TEST-LOG4J", "source": "NVD", "published_at": "2024-01-01T00:00:00Z", "cvss_score": 10.0, "affected_packages": [{"name": "org.apache.logging.log4j:log4j-core", "ecosystem": "maven", "versions_affected": ["<2.15.0"]}], "description": "Test vulnerability for log4j"}
