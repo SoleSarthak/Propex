@@ -272,6 +272,54 @@ services:
     networks:
       - default
 
+  # Microservice: Patch Drafter (Gemini AI)
+  patch-drafter:
+    build:
+      context: .
+      dockerfile: services/patch-drafter/Dockerfile
+    container_name: propex-patch-drafter
+    ports:
+      - "8007:8007"
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda:9092
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql+asyncpg://propex:propex_password@postgres:5432/propex_db
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      redpanda:
+        condition: service_started
+    networks:
+      - default
+
+  # Microservice: Issue Creator (GitHub REST API)
+  issue-creator:
+    build:
+      context: .
+      dockerfile: services/issue-creator/Dockerfile
+    container_name: propex-issue-creator
+    ports:
+      - "8008:8008"
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda:9092
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql+asyncpg://propex:propex_password@postgres:5432/propex_db
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_TOKEN_1=${GITHUB_TOKEN_1:-}
+      - GITHUB_TOKEN_2=${GITHUB_TOKEN_2:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      redpanda:
+        condition: service_started
+    networks:
+      - default
+
 volumes:
   postgres_data:
   redis_data:

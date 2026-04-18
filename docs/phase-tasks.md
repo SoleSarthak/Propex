@@ -224,33 +224,36 @@
 ## PHASE 4: LLM Patch Drafter + Issue Creator (Weeks 9–10)
 
 ### Patch Drafter Service (ML/AI)
-- [ ] Implement Redpanda consumer for `impact.scored` (Critical + High)
-- [ ] Implement **Google Gemini API** integration (free tier: 1M tokens/month, 1,500 req/day)
-  - [ ] Use `google-generativeai` Python SDK (free)
-  - [ ] Model: `gemini-2.0-flash` (free tier)
-- [ ] Write system prompt (security researcher persona, few-shot examples)
-- [ ] Write per-ecosystem user prompt templates (npm/PyPI/Maven variants)
-- [ ] Implement output validation (must contain: CVE ID, dep path, remediation, fix version)
-- [ ] Implement cache by (CVE ID + dep path hash) — 7-day Redis TTL
-- [ ] Implement fallback template system (all ecosystems + all tiers) for when LLM hits rate limits
-- [ ] Implement cost/quota tracking (log token usage per call to PostgreSQL)
-- [ ] Implement hard rate limit: stay within Gemini free tier (1,500 req/day)
-- [ ] Publish to `notifications.out` Redpanda topic
+- [x] Implement Redpanda consumer for `impact.scored` (Critical + High)
+- [x] Implement **Google Gemini API** integration (free tier: 1M tokens/month, 1,500 req/day)
+  - [x] Use `google-generativeai` Python SDK (free)
+  - [x] Model: `gemini-2.0-flash` (free tier)
+- [x] Write system prompt (security researcher persona, few-shot examples)
+- [x] Write per-ecosystem user prompt templates (npm/PyPI/Maven variants)
+- [x] Implement output validation (must contain: CVE ID, dep path, remediation, fix version)
+- [x] Implement cache by (CVE ID + dep path hash) — 7-day Redis TTL
+- [x] Implement fallback template system (all ecosystems + all tiers) for when LLM hits rate limits
+- [x] Implement cost/quota tracking (log token usage per call to PostgreSQL)
+- [x] Implement hard rate limit: stay within Gemini free tier (1,500 req/day)
+- [x] Publish to `notifications.out` Redpanda topic
 - [ ] Write unit tests for prompt rendering + output validation
 - [ ] Write integration tests (Redpanda event → Gemini call → Redpanda publish)
-- [ ] Write `Dockerfile` + `docker-compose` service entry
+- [x] Write `Dockerfile` + `docker-compose` service entry
 
 ### Issue Creator Service (Backend)
-- [ ] Implement Redpanda consumer for `notifications.out`
-- [ ] Implement opt-out registry check (Redis cache → PostgreSQL fallback)
-- [ ] Implement duplicate check (`issued_notifications` table + GitHub issue search)
-- [ ] Implement GitHub REST API client (create issue endpoint, free with personal token)
-- [ ] Implement token pool with round-robin rotation (up to 5 free GitHub accounts)
-- [ ] Implement rate limit management (parse `X-RateLimit-*` headers, respect `Retry-After`)
-- [ ] Implement retry logic: exponential backoff, max 3 retries
-- [ ] Implement `issued_notifications` table writes (success + failure)
-- [ ] Implement audit log entry per issue creation
-- [ ] Implement DLQ handling (failed → `notifications.dlq`, retry after 1h)
+- [x] Implement Redpanda consumer for `notifications.out`
+- [x] Implement opt-out registry check (Redis cache → PostgreSQL fallback)
+- [x] Implement duplicate check (`issued_notifications` table + GitHub issue search)
+- [x] Implement GitHub REST API client (create issue endpoint, free with personal token)
+- [x] Implement token pool with round-robin rotation (up to 5 free GitHub accounts)
+- [x] Implement rate limit management (parse `X-RateLimit-*` headers, respect `Retry-After`)
+- [x] Implement retry logic: exponential backoff, max 3 retries
+- [x] Implement `issued_notifications` table writes (success + failure)
+- [x] Implement audit log entry per issue creation
+- [x] Implement DLQ handling (failed → `notifications.dlq`, retry after 1h)
+- [ ] Write unit tests
+- [ ] Write integration tests
+- [x] Write `Dockerfile` + `docker-compose` service entry
 - [ ] Write unit tests (duplicate check, rate limit logic)
 - [ ] Write integration tests (Redpanda event → GitHub issue created → DB record)
 - [ ] Write `Dockerfile` + `docker-compose` service entry
