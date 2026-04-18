@@ -132,9 +132,9 @@
 - [ ] Add Grafana panel: Redpanda `cve.raw` consumer lag
 
 ### Phase 1 Milestone Verification
-- [ ] Manually trigger NVD poll; CVE appears in DB within 15 min
-- [ ] `lodash@<4.17.21` resolves with > 1,000 affected repos in Neo4j
-- [ ] `dependency.resolved` event appears in Redpanda
+- [x] Manually trigger NVD poll; CVE appears in DB within 15 min
+- [x] `lodash@<4.17.21` resolves with > 1,000 affected repos in Neo4j
+- [x] `dependency.resolved` event appears in Redpanda
 
 ---
 

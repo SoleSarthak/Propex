@@ -23,6 +23,12 @@ def get_async_sessionmaker(engine=None):
         expire_on_commit=False,
     )
 
+def get_db_session_factory(db_url: str = None):
+    """Alias for get_async_sessionmaker that accepts a custom DB URL"""
+    engine = create_async_engine(db_url or DATABASE_URL, echo=True)
+    return get_async_sessionmaker(engine)
+
+
 
 # For backward compatibility if needed, but better to use the functions
 # AsyncSessionLocal = get_async_sessionmaker()

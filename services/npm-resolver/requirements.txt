@@ -8,5 +8,4 @@ redis>=5.0.0
 semver>=3.0.0
 tenacity>=8.2.0
 
-# Shared internal library
-/libs/python-shared/
+# Shared internal library (installed via Dockerfile)

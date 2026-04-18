@@ -1,0 +1,1 @@
+{"cve_id": "CVE-TEST-LODASH", "affected_packages": [{"name": "lodash", "ecosystem": "npm", "version_range": "<4.17.21"}], "cvss_score": 9.8, "summary": "Test vulnerability for lodash"}

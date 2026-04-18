@@ -11,10 +11,14 @@ RUN apt-get update && apt-get install -y \
 COPY libs/python-shared /libs/python-shared
 COPY libs/scoring-engine /libs/scoring-engine
 
+# Install shared libraries
+RUN pip install --no-cache-dir /libs/python-shared
+RUN pip install --no-cache-dir /libs/scoring-engine
+
 # Copy service requirements
 COPY services/npm-resolver/requirements.txt .
 
-# Install dependencies
+# Install service dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy service source code
