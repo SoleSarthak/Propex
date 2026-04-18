@@ -35,7 +35,7 @@
 
 ### Platform / DevOps
 - [x] Install Docker Desktop and verify Docker Compose works locally
-- [ ] Create `docker-compose.yml` with all services:
+- [x] Create `docker-compose.yml` with all services:
   - [x] PostgreSQL 16 container (port 5432)
   - [x] Redis 7 container (port 6379)
   - [x] Neo4j Community 5.x container (ports 7474, 7687)
@@ -51,7 +51,7 @@
 
 ### Backend Team Lead
 - [x] Initialize monorepo structure (`poetry` workspaces + `pnpm` workspace)
-- [/] Scaffold `libs/python-shared`:
+- [x] Scaffold `libs/python-shared`:
   - [x] Pydantic models: `CveRecord`, `AffectedPackage`, Kafka event schemas
   - [x] Kafka producer/consumer base classes (using `confluent-kafka` Python client)
   - [x] SQLAlchemy async session factory (connect to local PostgreSQL)
@@ -59,7 +59,7 @@
   - [x] Auth middleware (JWT + API key, using `python-jose`)
   - [x] OpenTelemetry setup helper (free, CNCF project)
 - [x] Scaffold `libs/scoring-engine` with formula stub
-- [/] Set up Alembic + write initial migration (all tables from `05-database-schema.md`)
+- [x] Set up Alembic + write initial migration (all tables from `05-database-schema.md`)
 - [x] Write `Makefile` with all standard dev commands
 - [x] Write developer onboarding `scripts/setup-dev.sh` (installs Python/Node, starts Docker Compose)
 - [x] Write `scripts/seed-db.py` with 4 real CVE seeds
@@ -67,8 +67,8 @@
 ### Frontend Team
 - [x] Scaffold React app with Vite + TypeScript
 - [x] Install and configure: shadcn/ui, Tailwind CSS, Zustand, TanStack Query, React Router v6
-- [ ] Configure MSW (Mock Service Worker) for local API mocking
-- [ ] Set up Playwright for E2E tests (free, open-source)
+- [x] Configure MSW (Mock Service Worker) for local API mocking
+- [x] Set up Playwright for E2E tests (free, open-source)
 - [x] Create design tokens (colors, typography, spacing) in `styles/theme.css`
 - [x] Build `TopNav`, `Sidebar`, `PageWrapper` layout components
 - [x] Build `LoadingSpinner`, `EmptyState`, `Pagination` common components

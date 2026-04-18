@@ -76,7 +76,7 @@ class CveAffectedPackage(Base):
     )
     ecosystem = Column(String(10), nullable=False)
     package_name = Column(String(300), nullable=False)
-    versions_affected = Column(ARRAY(Text), nullable=False)
+    versions_affected: Column = Column(ARRAY(Text), nullable=False)
     fixed_version = Column(String(100))
     purl = Column(Text)
     created_at = Column(
@@ -169,7 +169,7 @@ class AffectedRepository(Base):
     repo_name = Column(Text, nullable=False)
 
     dependency_depth = Column(Integer, nullable=False, default=1)
-    dependency_path = Column(ARRAY(Text), nullable=False)
+    dependency_path: Column = Column(ARRAY(Text), nullable=False)
     dependency_file = Column(Text)
     version_spec = Column(String)
     context_type = Column(String(20))
