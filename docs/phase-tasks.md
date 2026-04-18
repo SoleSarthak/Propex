@@ -190,34 +190,34 @@
 ## PHASE 3: Scoring Engine + Impact Analysis (Weeks 7–8)
 
 ### Impact Analyzer Service (Backend + ML/AI)
-- [ ] Implement Redpanda consumer for `dependency.resolved`
-- [ ] Implement Neo4j path query: find dependency depth for each repo-CVE pair
-- [ ] Implement context type extraction from dependency manifest (runtime vs. dev)
-- [ ] Implement download count fetch from Redis (populated by resolvers)
-- [ ] Integrate `libs/scoring-engine` `compute_score()` function
-- [ ] Persist all 4 scoring factors + final score to `affected_repositories` table
-- [ ] Cache scores in Redis (1h TTL)
-- [ ] Publish Critical + High repos to `impact.scored` Redpanda topic (immediate)
-- [ ] Schedule batch job for Medium + Low repos (nightly, 2 AM UTC) using APScheduler
+- [x] Implement Redpanda consumer for `dependency.resolved`
+- [x] Implement Neo4j path query: find dependency depth for each repo-CVE pair
+- [x] Implement context type extraction from dependency manifest (runtime vs. dev)
+- [x] Implement download count fetch from Redis (populated by resolvers)
+- [x] Integrate `libs/scoring-engine` `compute_score()` function
+- [x] Persist all 4 scoring factors + final score to `affected_repositories` table
+- [x] Cache scores in Redis (1h TTL)
+- [x] Publish Critical + High repos to `impact.scored` Redpanda topic (immediate)
+- [x] Schedule batch job for Medium + Low repos (nightly, 2 AM UTC) using APScheduler
 - [ ] Implement score recalculation trigger (on CVSS update Kafka event)
 - [ ] Write unit tests for each pipeline step
 - [ ] Write integration tests (full: Redpanda event → DB record with score)
-- [ ] Write `Dockerfile` + `docker-compose` service entry
+- [x] Write `Dockerfile` + `docker-compose` service entry
 
 ### API Gateway — Scoring Endpoints (Backend)
-- [ ] `GET /api/v1/cves/{cve_id}/affected-repos` with pagination + sort by score
-- [ ] `GET /api/v1/repos/{owner}/{name}/vulnerabilities`
-- [ ] `PATCH /api/v1/repos/{owner}/{name}/vulnerabilities/{cve_id}` (maintainer status update)
-- [ ] Wire up PostgreSQL queries with SQLAlchemy async
+- [x] `GET /api/v1/cves/{cve_id}/affected-repos` with pagination + sort by score
+- [x] `GET /api/v1/repos/{owner}/{name}/vulnerabilities`
+- [x] `PATCH /api/v1/repos/{owner}/{name}/vulnerabilities/{cve_id}` (maintainer status update)
+- [x] Wire up PostgreSQL queries with SQLAlchemy async
 - [ ] Add Redis response caching (5 min TTL for CVE detail)
 - [ ] Write integration tests for each endpoint
 
 ### Phase 3 Milestone Verification
-- [ ] Score computed for all affected repos within 10 min of dependency resolution
-- [ ] Formula validated: run 20 test cases from `08-scoring-engine-spec.md`, all pass
-- [ ] All 4 scoring factors stored in `affected_repositories` table
-- [ ] `impact.scored` events appear in Redpanda for Critical/High repos
-- [ ] API returns correctly sorted paginated results
+- [x] Score computed for all affected repos within 10 min of dependency resolution
+- [x] Formula validated: run 20 test cases from `08-scoring-engine-spec.md`, all pass
+- [x] All 4 scoring factors stored in `affected_repositories` table
+- [x] `impact.scored` events appear in Redpanda for Critical/High repos
+- [x] API returns correctly sorted paginated results
 
 ---
 
