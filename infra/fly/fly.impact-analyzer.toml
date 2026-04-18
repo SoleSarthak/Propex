@@ -1,0 +1,23 @@
+app = "propex-impact-analyzer"
+primary_region = "sin"
+
+[build]
+  dockerfile = "services/impact-analyzer/Dockerfile"
+
+[http_service]
+  internal_port = 8005
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512   # Needs more RAM for ML scoring
+
+[env]
+  KAFKA_BOOTSTRAP_SERVERS = ""  # fly secrets set ...
+  NEO4J_URI                = ""
+  DATABASE_URL             = ""
+  REDIS_URL                = ""

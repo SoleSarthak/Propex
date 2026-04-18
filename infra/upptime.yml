@@ -1,0 +1,33 @@
+title: Propex Status
+description: Real-time status for Propex — Open Source Vulnerability Tracker
+url: https://SoleSarthak.github.io/propex-status
+logo: https://raw.githubusercontent.com/SoleSarthak/Propex/main/apps/web-dashboard/public/logo.svg
+status-website:
+  baseUrl: /propex-status
+  logoUrl: https://raw.githubusercontent.com/SoleSarthak/Propex/main/apps/web-dashboard/public/logo.svg
+  name: Propex Status
+  navbar:
+    - title: GitHub
+      href: https://github.com/SoleSarthak/Propex
+
+sites:
+  - name: API Gateway
+    url: https://api.propex.dev/health
+    expectedStatusCodes:
+      - 200
+    assignees:
+      - SoleSarthak
+    
+  - name: Web Dashboard
+    url: https://propex.dev
+    expectedStatusCodes:
+      - 200
+    assignees:
+      - SoleSarthak
+
+  - name: CVE Endpoints
+    url: https://api.propex.dev/api/v1/notifications
+    expectedStatusCodes:
+      - 200
+    assignees:
+      - SoleSarthak

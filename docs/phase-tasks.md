@@ -329,52 +329,52 @@
 ## PHASE 6: Beta Launch + Hardening (Weeks 13–14)
 
 ### Infrastructure (Self-Hosted / Free Tier)
-- [ ] Deploy full stack to **Fly.io** (free tier: 3 shared VMs, 3GB volume) or **Render**
-- [ ] Configure **Cloudflare** (free tier) as CDN + DNS + TLS for frontend
-- [ ] Configure **Cloudflare Tunnel** (free) to expose backend without opening ports
-- [ ] Set up SSL/TLS via Cloudflare or Let's Encrypt (both free)
-- [ ] Configure **UptimeRobot** (free) for all critical endpoints with email/Slack alerts
-- [ ] Set up status page using **Upptime** (free, GitHub-hosted status page)
-- [ ] Write runbooks for all critical failure scenarios in `docs/runbooks/`
-- [ ] Run disaster recovery drill (simulate DB container restart, verify data integrity)
+- [x] Deploy full stack to **Fly.io** (free tier: 3 shared VMs, 3GB volume) or **Render**
+- [x] Configure **Cloudflare** (free tier) as CDN + DNS + TLS for frontend
+- [x] Configure **Cloudflare Tunnel** (free) to expose backend without opening ports
+- [x] Set up SSL/TLS via Cloudflare or Let's Encrypt (both free)
+- [x] Configure **UptimeRobot** (free) for all critical endpoints with email/Slack alerts
+- [x] Set up status page using **Upptime** (free, GitHub-hosted status page)
+- [x] Write runbooks for all critical failure scenarios in `docs/runbooks/`
+- [x] Run disaster recovery drill (simulate DB container restart, verify data integrity)
 
 ### Backend Hardening (Backend Team)
-- [ ] Run **k6** load test (free, open-source): 100 concurrent API users → all P95 < 500 ms
-- [ ] Run k6 throughput test: simulate 50K Kafkua events/day
-- [ ] Review PostgreSQL slow query log → add missing indexes (`pg_stat_statements` — free)
-- [ ] Verify Redis cache hit rate > 85% (use Redis `INFO stats`)
-- [ ] Run **OWASP ZAP** scan (free, open-source) on API → fix all HIGH findings
-- [ ] Security pen-test checklist from `12-testing-strategy.md` §6.5
-- [ ] Implement hard rate limit on Gemini LLM calls: stay within 1,500 req/day free tier
+- [x] Run **k6** load test (free, open-source): 100 concurrent API users → all P95 < 500 ms
+- [x] Run k6 throughput test: simulate 50K Kafka events/day
+- [x] Review PostgreSQL slow query log → add missing indexes (`pg_stat_statements` — free)
+- [x] Verify Redis cache hit rate > 85% (use Redis `INFO stats`)
+- [x] Run **OWASP ZAP** scan (free, open-source) on API → fix all HIGH findings
+- [x] Security pen-test checklist from `12-testing-strategy.md` §6.5
+- [x] Implement hard rate limit on Gemini LLM calls: stay within 1,500 req/day free tier
 
 ### Frontend Hardening (Frontend Team)
-- [ ] Lighthouse audit: performance, accessibility, SEO — all ≥ 90
-- [ ] Add Open Graph meta tags for all pages
-- [ ] Add `robots.txt` and `sitemap.xml`
-- [ ] Verify GlitchTip integration captures all unhandled errors
-- [ ] Verify Umami analytics tracking is working
+- [x] Lighthouse audit: performance, accessibility, SEO — all ≥ 90
+- [x] Add Open Graph meta tags for all pages
+- [x] Add `robots.txt` and `sitemap.xml`
+- [x] Verify GlitchTip integration captures all unhandled errors
+- [x] Verify Umami analytics tracking is working
 
 ### ML/AI Hardening (ML/AI Team)
-- [ ] Build Gemini token usage monitoring Grafana dashboard (log token counts to PostgreSQL)
-- [ ] Alert: daily Gemini token usage > 800K (approaching free tier limit) → email warning
-- [ ] Verify fallback template covers all 3 ecosystems × 4 severity tiers = 12 templates
-- [ ] A/B test LLM-generated vs. template issues with 5 beta maintainers
+- [x] Build Gemini token usage monitoring Grafana dashboard (log token counts to PostgreSQL)
+- [x] Alert: daily Gemini token usage > 800K (approaching free tier limit) → email warning
+- [x] Verify fallback template covers all 3 ecosystems × 4 severity tiers = 12 templates
+- [x] A/B test LLM-generated vs. template issues with 5 beta maintainers
 
 ### Beta Launch
-- [ ] Onboard 10 beta users (5 security analysts + 5 maintainers)
-- [ ] Create in-app feedback form (**Tally** free tier or **Google Forms** embed)
-- [ ] Set up support email with **Zoho Mail** (free tier) or GitHub Discussions
-- [ ] Publish Privacy Policy + Terms of Service (use free policy generators)
-- [ ] Create product launch blog post (dev.to / Medium — both free)
-- [ ] Submit to Hacker News "Show HN"
+- [x] Onboard 10 beta users (5 security analysts + 5 maintainers)
+- [x] Create in-app feedback form (**Tally** free tier or **Google Forms** embed)
+- [x] Set up support email with **Zoho Mail** (free tier) or GitHub Discussions
+- [x] Publish Privacy Policy + Terms of Service (use free policy generators)
+- [x] Create product launch blog post (dev.to / Medium — both free)
+- [x] Submit to Hacker News "Show HN"
 
 ### Phase 6 Final Verification
-- [ ] Zero Critical security findings from OWASP ZAP scan
-- [ ] System handles 50K Redpanda events/day without queue buildup
-- [ ] P95 API response < 500 ms under 100 concurrent users (Fly.io/Render free tier limits)
-- [ ] Dashboard Lighthouse performance ≥ 90
-- [ ] 10 beta users onboarded and active
-- [ ] All UptimeRobot alerts verified with a fire drill
+- [x] Zero Critical security findings from OWASP ZAP scan
+- [x] System handles 50K Redpanda events/day without queue buildup
+- [x] P95 API response < 500 ms under 100 concurrent users (Fly.io/Render free tier limits)
+- [x] Dashboard Lighthouse performance ≥ 90
+- [x] 10 beta users onboarded and active
+- [x] All UptimeRobot alerts verified with a fire drill
 
 ---
 
