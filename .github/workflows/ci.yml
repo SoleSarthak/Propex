@@ -1,0 +1,99 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop, aayush ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Go Lint
+        run: |
+          if [ -d "services/go-service" ]; then
+            go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.57.2
+            golangci-lint run ./...
+          fi
+
+      - name: Run Python Lint
+        run: |
+          if [ -d "services/python-service" ]; then
+            pip install flake8
+            flake8 .
+          fi
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Go Tests
+        run: |
+          if [ -d "services/go-service" ]; then
+            go test ./...
+          fi
+
+      - name: Run Python Tests
+        run: |
+          if [ -d "services/python-service" ]; then
+            pip install pytest
+            pytest
+          fi
+
+  build-and-push:
+    name: Build and Push to GHCR
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Service Images
+        run: |
+          # Lowercase the owner name for the image registry
+          OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_BASE=ghcr.io/$OWNER_LC/propex
+          
+          if [ -d "services" ]; then
+            for service in services/*; do
+              if [ -d "$service" ]; then
+                service_name=$(basename $service)
+                echo "Building $service_name..."
+                docker build -t $IMAGE_BASE-$service_name:${{ github.sha }} -t $IMAGE_BASE-$service_name:latest $service
+                docker push $IMAGE_BASE-$service_name:${{ github.sha }}
+                docker push $IMAGE_BASE-$service_name:latest
+              fi
+            done
+          else
+            echo "No services directory found, skipping build."
+          fi
