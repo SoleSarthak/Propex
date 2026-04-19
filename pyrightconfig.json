@@ -3,7 +3,8 @@
     "apps",
     "libs",
     "scripts",
-    "migrations"
+    "migrations",
+    "services"
   ],
   "extraPaths": [
     "libs/python-shared"

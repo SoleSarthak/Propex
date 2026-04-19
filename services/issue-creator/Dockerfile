@@ -3,11 +3,10 @@ FROM python:3.12-slim
 WORKDIR /app
 
 COPY services/issue-creator/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy shared library
-COPY libs/python-shared /libs/python-shared
-RUN pip install --no-cache-dir -e /libs/python-shared
+# Install build tools, then dependencies and shared library
+RUN pip install --no-cache-dir setuptools wheel \
+    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir -e /libs/python-shared
 
 COPY services/issue-creator/src ./src
 

@@ -4,7 +4,7 @@ import json
 import asyncio
 from typing import Dict, Any
 from odepm_common.kafka.consumer import KafkaConsumerBase
-from .services.resolver import NpmResolver
+from .resolver import NpmResolver
 
 logger = logging.getLogger(__name__)
 

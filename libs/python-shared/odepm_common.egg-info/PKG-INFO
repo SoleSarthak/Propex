@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: odepm-common
+Version: 0.1.0
+Summary: Shared utilities for ODEPM
+Author-email: Sarthak <sarth@example.com>
+Requires-Dist: pydantic>=2.6.0
+Requires-Dist: aiokafka>=0.10.0
+Requires-Dist: redis>=5.0.0
+Requires-Dist: neo4j>=5.17.0
+Requires-Dist: sqlalchemy[asyncio]>=2.0.27
+Requires-Dist: asyncpg>=0.29.0
+Requires-Dist: python-jose[cryptography]>=3.3.0
+Requires-Dist: opentelemetry-api>=1.23.0
+Requires-Dist: opentelemetry-sdk>=1.23.0
+Requires-Dist: opentelemetry-exporter-otlp>=1.23.0
+Requires-Dist: fastapi>=0.109.0
+Requires-Dist: alembic>=1.13.1
