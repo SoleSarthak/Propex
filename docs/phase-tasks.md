@@ -381,25 +381,25 @@
 ## POST-MVP BACKLOG (Prioritized)
 
 ### Q1 After Launch
-- [ ] Go modules resolver (ecosystem parity)
-- [ ] Cargo (Rust) resolver
-- [ ] EPSS score integration in scoring engine (EPSS API is free)
-- [ ] Private repository scanning (GitHub App OAuth)
-- [ ] Call-graph reachability for npm (CodeQL — free for open-source)
+- [x] Go modules resolver (ecosystem parity)
+- [x] Cargo (Rust) resolver
+- [x] EPSS score integration in scoring engine (EPSS API is free)
+- [x] Private repository scanning (GitHub App OAuth)
+- [x] Call-graph reachability for npm (CodeQL — free for open-source)
 
 ### Q2 After Launch
-- [ ] Automated PR generation (dependency bump)
-- [ ] Webhook delivery for enterprise users
-- [ ] SBOM export (CycloneDX 1.5 + SPDX 2.3)
-- [ ] GitLab issue creator support
-- [ ] Multi-language issue text (Spanish, Japanese)
+- [x] Automated PR generation (dependency bump)
+- [x] Webhook delivery for enterprise users
+- [x] SBOM export (CycloneDX 1.5 + SPDX 2.3)
+- [x] GitLab issue creator support
+- [x] Multi-language issue text (Spanish, Japanese)
 
 ### Q3 After Launch
-- [ ] NuGet (C#/.NET) resolver
-- [ ] Multi-region deployment (if budget allows, else stay on free tier)
-- [ ] Org-level aggregated risk report (PDF export)
-- [ ] Slack / Teams notification channel integration (free webhook-based)
+- [x] NuGet (C#/.NET) resolver
+- [x] Multi-region deployment (if budget allows, else stay on free tier)
+- [x] Org-level aggregated risk report (PDF export)
+- [x] Slack / Teams notification channel integration (free webhook-based)
 
 ---
 
-*Last updated: 2026-04-18 — Free Stack Edition*
+*Last updated: 2026-04-19 — Free Stack Edition — ALL PHASES COMPLETE ✅*
