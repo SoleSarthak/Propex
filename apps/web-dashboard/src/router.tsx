@@ -4,6 +4,7 @@ import DashboardPage from "./pages/DashboardPage";
 import CveListPage from "./pages/CveListPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import OptOutPage from "./pages/OptOutPage";
+import RemediationPage from "./pages/RemediationPage";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
     element: (
       <PageWrapper>
         <OptOutPage />
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "/remediation",
+    element: (
+      <PageWrapper>
+        <RemediationPage />
       </PageWrapper>
     ),
   },

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ShieldAlert, Package, Globe, AlertTriangle, TrendingUp, Activity, Zap } from "lucide-react";
+import { ShieldAlert, Package, Globe, AlertTriangle, TrendingUp, Activity, Zap, Sparkles } from "lucide-react";
 import { getAffectedRepos, type AffectedRepo } from "../lib/api";
 
 const SEVERITY_COLOR: Record<string, string> = {
@@ -74,9 +74,18 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-bold tracking-tight">Security Overview</h1>
           <p className="text-muted-foreground mt-1">Monitor vulnerability propagation across your dependency graph in real-time.</p>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Live
+        <div className="flex items-center gap-3">
+          <a 
+            href="/remediation" 
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+          >
+            <Sparkles size={16} />
+            Remediation Hub
+          </a>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Live
+          </div>
         </div>
       </div>
 
