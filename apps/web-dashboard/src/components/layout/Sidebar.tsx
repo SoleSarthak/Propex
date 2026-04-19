@@ -64,17 +64,6 @@ export function Sidebar() {
           <HelpCircle size={20} />
           Help Center
         </button>
-
-        <div className="mt-6 pt-6 border-t">
-          <div className="px-3 py-2 bg-primary/5 rounded-xl border border-primary/10">
-            <p className="text-xs font-semibold text-primary uppercase tracking-wider">Plan</p>
-            <p className="text-sm font-bold mt-1">Enterprise Dev</p>
-            <div className="mt-3 h-1.5 w-full bg-primary/10 rounded-full overflow-hidden">
-              <div className="h-full w-2/3 bg-primary" />
-            </div>
-            <p className="text-[10px] text-muted-foreground mt-2">67% of node capacity used</p>
-          </div>
-        </div>
       </div>
     </aside>
   );
