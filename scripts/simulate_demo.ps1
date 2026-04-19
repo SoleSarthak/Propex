@@ -2,7 +2,7 @@
 # Run this to trigger a real-time vulnerability ingestion
 
 $cveData = @{
-    cve_id = "CVE-2026-9999"
+    cve_id = "CVE-2026-2000"
     source = "nvd"
     published_at = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssZ")
     cvss_score = 9.8
