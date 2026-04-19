@@ -165,19 +165,35 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <FileUploadScanner />
         <div className="p-6 bg-card border border-border/40 rounded-2xl shadow-sm">
-          <h3 className="text-lg font-semibold mb-6">Resolution Activity (7-day)</h3>
-          <div className="flex items-end gap-2 h-28">
-            {[40, 65, 45, 90, 85, 100, 78].map((h, i) => (
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-lg font-semibold">Resolution Velocity</h3>
+              <p className="text-[10px] text-muted-foreground flex items-center gap-1">
+                <TrendingUp size={10} className="text-emerald-500" /> +14% faster than last week
+              </p>
+            </div>
+            <div className="flex gap-1">
+              {["H", "M", "L"].map((t) => (
+                <span key={t} className="w-4 h-1 rounded-full bg-primary/20" />
+              ))}
+            </div>
+          </div>
+          <div className="flex items-end gap-1.5 h-28">
+            {[32, 45, 28, 65, 48, 72, 90, 45, 60, 85, 95, 100, 88, 92].map((h, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-2">
                 <div
-                  className="w-full bg-primary/20 hover:bg-primary/50 rounded-t-md transition-all duration-300 cursor-pointer"
+                  className={`w-full rounded-t-sm transition-all duration-500 cursor-pointer ${
+                    i > 10 ? "bg-primary" : "bg-primary/20 hover:bg-primary/40"
+                  }`}
                   style={{ height: `${h}%` }}
+                  title={`Day ${i+1}: ${h} issues fixed`}
                 />
               </div>
             ))}
           </div>
-          <div className="flex justify-between mt-3 text-xs text-muted-foreground">
-            {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d => <span key={d}>{d}</span>)}
+          <div className="flex justify-between mt-3 text-[9px] font-bold uppercase tracking-tighter text-muted-foreground/60">
+            <span>2 Weeks Ago</span>
+            <span>Today</span>
           </div>
         </div>
       </div>

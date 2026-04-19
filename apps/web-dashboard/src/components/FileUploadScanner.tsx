@@ -65,7 +65,7 @@ export const FileUploadScanner = () => {
     <div className="bg-card border border-border/40 rounded-2xl p-6 shadow-sm relative overflow-hidden">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold flex items-center gap-2">
-          <Upload size={18} className="text-primary" /> Live VirusTotal Scan
+          <Upload size={18} className="text-primary" /> Live Virus Scan
         </h3>
         {status !== "idle" && (
           <button onClick={reset} className="text-muted-foreground hover:text-foreground">
@@ -102,7 +102,7 @@ export const FileUploadScanner = () => {
           </div>
           <div className="text-center">
             <p className="text-sm font-medium">Drop any file to scan</p>
-            <p className="text-xs text-muted-foreground mt-1">Real-time analysis via VirusTotal API</p>
+            <p className="text-xs text-muted-foreground mt-1">Real-time analysis via Live Virus Scan API</p>
           </div>
         </div>
       )}
@@ -117,7 +117,7 @@ export const FileUploadScanner = () => {
           </div>
           <div className="text-center">
             <p className="text-sm font-bold tracking-tight">Analyzing {fileName}...</p>
-            <p className="text-xs text-muted-foreground mt-1">Hashing and checking VirusTotal Global Intel</p>
+            <p className="text-xs text-muted-foreground mt-1">Hashing and checking Global Malware Intel</p>
           </div>
         </div>
       )}
@@ -141,8 +141,8 @@ export const FileUploadScanner = () => {
                 </p>
                 <p className="text-xs opacity-80 mt-1">
                   {scanResult.detected 
-                    ? `VirusTotal flagged this file with ${scanResult.malicious_count} detections.` 
-                    : "This file fingerprint is recognized as safe by VirusTotal."}
+                    ? `Our engines flagged this file with ${scanResult.malicious_count} detections.` 
+                    : "This file fingerprint is recognized as safe by our Global Intel."}
                 </p>
               </div>
             </div>
@@ -161,7 +161,7 @@ export const FileUploadScanner = () => {
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-1">
                   <ShieldCheck size={12} className={scanResult.detected ? "text-rose-500" : "text-emerald-500"} /> 
-                  VirusTotal Live Intel
+                  Global Malware Intel
                 </span>
                 <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                   scanResult.detected ? "bg-rose-500 text-white" : "bg-emerald-500 text-white"
