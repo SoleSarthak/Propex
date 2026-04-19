@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ShieldAlert, Package, Globe, AlertTriangle, TrendingUp, Activity, Zap, Sparkles } from "lucide-react";
 import { getAffectedRepos, type AffectedRepo } from "../lib/api";
+import { FileUploadScanner } from "../components/FileUploadScanner";
 
 const SEVERITY_COLOR: Record<string, string> = {
   Critical: "bg-rose-500/10 text-rose-400 border-rose-500/30",
@@ -159,22 +160,25 @@ export default function DashboardPage() {
           )}
         </div>
       </div>
-
-      {/* Security Health Chart */}
-      <div className="p-6 bg-card border border-border/40 rounded-2xl shadow-sm">
-        <h3 className="text-lg font-semibold mb-6">Resolution Activity (7-day)</h3>
-        <div className="flex items-end gap-2 h-28">
-          {[40, 65, 45, 90, 85, 100, 78].map((h, i) => (
-            <div key={i} className="flex-1 flex flex-col items-center gap-2">
-              <div
-                className="w-full bg-primary/20 hover:bg-primary/50 rounded-t-md transition-all duration-300 cursor-pointer"
-                style={{ height: `${h}%` }}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-between mt-3 text-xs text-muted-foreground">
-          {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d => <span key={d}>{d}</span>)}
+      
+      {/* Tools Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <FileUploadScanner />
+        <div className="p-6 bg-card border border-border/40 rounded-2xl shadow-sm">
+          <h3 className="text-lg font-semibold mb-6">Resolution Activity (7-day)</h3>
+          <div className="flex items-end gap-2 h-28">
+            {[40, 65, 45, 90, 85, 100, 78].map((h, i) => (
+              <div key={i} className="flex-1 flex flex-col items-center gap-2">
+                <div
+                  className="w-full bg-primary/20 hover:bg-primary/50 rounded-t-md transition-all duration-300 cursor-pointer"
+                  style={{ height: `${h}%` }}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-between mt-3 text-xs text-muted-foreground">
+            {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d => <span key={d}>{d}</span>)}
+          </div>
         </div>
       </div>
     </div>

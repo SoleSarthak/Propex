@@ -27,9 +27,11 @@ db = Database(DATABASE_URL)
 from .routers.scoring import router as scoring_router
 from .routers.opt_out import router as opt_out_router
 from .routers.notifications import router as notifications_router
+from .routers.security import router as security_router
 app.include_router(scoring_router)
 app.include_router(opt_out_router)
 app.include_router(notifications_router)
+app.include_router(security_router)
 
 @app.on_event("startup")
 async def startup_event():
