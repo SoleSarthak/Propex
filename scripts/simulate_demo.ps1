@@ -1,30 +1,21 @@
-# Propex Live Demo Simulation Script
+# Propex Live Demo Simulation Script (Fixed Schema)
 # Run this to trigger a real-time vulnerability ingestion
 
 $cveData = @{
-    id = "CVE-2026-9999"
-    sourceIdentifier = "nvd@nist.gov"
-    published = "2026-04-19T10:00:00.000"
-    lastModified = "2026-04-19T10:00:00.000"
-    vulnStatus = "Analyzed"
-    descriptions = @(
+    cve_id = "CVE-2026-9999"
+    source = "nvd"
+    published_at = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssZ")
+    cvss_score = 9.8
+    affected_packages = @(
         @{
-            lang = "en"
-            value = "CRITICAL: Remote Code Execution vulnerability in core-dependency-lib affecting all versions prior to 2.4.5."
+            ecosystem = "npm"
+            name = "core-dependency-lib"
+            versions_affected = @("<2.4.5")
+            fixed_version = "2.4.5"
         }
     )
-    metrics = @{
-        cvssMetricV31 = @(
-            @{
-                cvssData = @{
-                    version = "3.1"
-                    vectorString = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-                    baseScore = 9.8
-                    baseSeverity = "CRITICAL"
-                }
-            }
-        )
-    }
+    description = "CRITICAL: Remote Code Execution vulnerability in core-dependency-lib affecting all versions prior to 2.4.5."
+    raw_data = @{ demo = $true }
 } | ConvertTo-Json -Depth 10
 
 Write-Host "Triggering Live CVE Ingestion for CVE-2026-9999..." -ForegroundColor Cyan
@@ -33,5 +24,10 @@ try {
     Write-Host "Success! System is now processing the vulnerability." -ForegroundColor Green
     Write-Host "Check Redpanda Console (localhost:8080) and Neo4j (localhost:7474) for updates." -ForegroundColor Yellow
 } catch {
-    Write-Host "Error: Could not connect to CVE Ingestion service. Is it running on port 8000?" -ForegroundColor Red
+    $errMsg = $_.Exception.Message
+    if ($_.Exception.Response) {
+        $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+        $errMsg = $reader.ReadToEnd()
+    }
+    Write-Host "Error: $errMsg" -ForegroundColor Red
 }

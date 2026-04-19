@@ -60,7 +60,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAffectedRepos("CVE-TEST-ML-1234", 0, 10)
+    getAffectedRepos("CVE-2026-9999", 0, 10)
       .then(setLiveRepos)
       .catch(() => setLiveRepos([]))
       .finally(() => setLoading(false));
@@ -108,10 +108,10 @@ export default function DashboardPage() {
           </div>
           <div className="space-y-4">
             {[
+              { cve: "CVE-2026-9999", pkg: "core-dependency-lib@2.4.4", repos: 12, time: "Just now", tier: "Critical" },
               { cve: "CVE-2024-8779", pkg: "express@4.18.2", repos: 143, time: "2m ago", tier: "Critical" },
               { cve: "CVE-2024-6119", pkg: "openssl@3.1.0", repos: 89, time: "11m ago", tier: "High" },
               { cve: "CVE-2024-3094", pkg: "xz-utils@5.6.0", repos: 34, time: "25m ago", tier: "Critical" },
-              { cve: "CVE-2024-1234", pkg: "requests@2.28.0", repos: 512, time: "1h ago", tier: "High" },
             ].map((item) => (
               <div key={item.cve} className="flex items-center gap-4 p-3 rounded-xl hover:bg-muted/40 transition-colors cursor-pointer">
                 <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${SEVERITY_COLOR[item.tier]}`}>{item.tier}</span>
